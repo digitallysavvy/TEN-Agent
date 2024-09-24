@@ -16,9 +16,9 @@
   "features": {
     "ghcr.io/devcontainers/features/git:1": {}
   },
-  "postCreateCommand": "go install github.com/digitallysavvy/ten-agent-cli@latest",
+  "postCreateCommand": "curl -L https://github.com/digitallysavvy/ten-agent-cli/releases/latest/download/ten-agent_Linux_x86_64.tar.gz | tar xz -C /usr/local/bin",
   "remoteUser": "root",
   "remoteEnv": {
-    "PATH": "${containerEnv:PATH}:/root/go/bin"
+    "PATH": "${containerEnv:PATH}:/usr/local/bin"
   }
 }
