@@ -33,6 +33,7 @@ Container image: `ghcr.io/ten-framework/ten_agent_build:0.7.14`
 | `OPENAI_MODEL`               | Model name (e.g., `gpt-4o`)  | Yes      |
 | `DEEPGRAM_API_KEY`           | ASR provider                 | Yes      |
 | `ELEVENLABS_TTS_KEY`         | TTS provider                 | Yes      |
+| `SPEECHMATICS_API_KEY`       | Speechmatics STT/TTS provider | Graph-specific |
 | `LOG_PATH`                   | Container log directory bind | Yes      |
 | `LOG_STDOUT`                 | Worker log visibility         | Yes (`true`) |
 | `SERVER_PORT`                | API server port               | Yes (`8080`) |
