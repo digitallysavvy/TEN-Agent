@@ -16,6 +16,7 @@ A configurable voice assistant with real-time conversation capabilities using Ag
 2. **STT Provider**: choose the graph you want to run
    - `DEEPGRAM_API_KEY` for the default `voice_assistant` graph
    - `XAI_API_KEY` for `voice_assistant_xai_asr` or `voice_assistant_xai_full`
+   - `SPEECHMATICS_API_KEY` for `voice_assistant_speechmatics_tts`
 
 3. **OpenAI Account**: Get credentials from [OpenAI Platform](https://platform.openai.com/)
    - `OPENAI_API_KEY` - Your OpenAI API key (required)
@@ -23,6 +24,11 @@ A configurable voice assistant with real-time conversation capabilities using Ag
 4. **TTS Provider**: choose the graph you want to run
    - `ELEVENLABS_TTS_KEY` for the default `voice_assistant` graph or `voice_assistant_xai_asr`
    - `XAI_API_KEY` for `voice_assistant_xai_tts` or `voice_assistant_xai_full`
+   - `SPEECHMATICS_API_KEY` for `voice_assistant_speechmatics_tts`
+
+For `voice_assistant_speechmatics_tts`, Speechmatics STT and TTS share the
+same `SPEECHMATICS_API_KEY`; Deepgram and ElevenLabs keys are not required for
+that graph.
 
 ### Provider-specific keys
 
@@ -32,6 +38,8 @@ A configurable voice assistant with real-time conversation capabilities using Ag
    - `ELEVENLABS_TTS_KEY` - Your ElevenLabs API key (required)
 - **xAI Account**: Get credentials from [xAI Console](https://console.x.ai/)
    - `XAI_API_KEY` - Your xAI Voice API key (required for xAI STT/TTS graphs)
+- **Speechmatics Account**: Get credentials from [Speechmatics](https://www.speechmatics.com/)
+   - `SPEECHMATICS_API_KEY` - Your Speechmatics API key (required for Speechmatics STT/TTS graphs)
 
 ### Optional Environment Variables
 
@@ -64,6 +72,9 @@ ELEVENLABS_TTS_KEY=your_elevenlabs_api_key_here
 
 # xAI (required for xAI speech-to-text and/or text-to-speech graphs)
 XAI_API_KEY=your_xai_api_key_here
+
+# Speechmatics (required for Speechmatics speech-to-text and text-to-speech graph)
+SPEECHMATICS_API_KEY=your_speechmatics_api_key_here
 
 # Optional
 WEATHERAPI_API_KEY=your_weather_api_key_here
@@ -104,6 +115,15 @@ Available graph names:
 - `voice_assistant_xai_asr` - xAI STT + OpenAI-compatible LLM + ElevenLabs TTS
 - `voice_assistant_xai_tts` - Deepgram STT + OpenAI-compatible LLM + xAI TTS
 - `voice_assistant_xai_full` - xAI STT + OpenAI-compatible LLM + xAI TTS
+- `voice_assistant_speechmatics_tts` - Speechmatics STT + OpenAI-compatible LLM + Speechmatics TTS
+
+Required provider keys by common graph:
+
+| Graph | Speech key | LLM key | Other provider keys |
+|-------|------------|---------|---------------------|
+| `voice_assistant` | - | `OPENAI_API_KEY` | `DEEPGRAM_API_KEY`, `ELEVENLABS_TTS_KEY` |
+| `voice_assistant_speechmatics_tts` | `SPEECHMATICS_API_KEY` | `OPENAI_API_KEY` | - |
+| `voice_assistant_xai_full` | - | `OPENAI_API_KEY` | `XAI_API_KEY` |
 
 Examples:
 
@@ -188,6 +208,7 @@ The voice assistant is configured in `tenapp/property.json`:
 | `OPENAI_MODEL` | string | - | OpenAI model name (optional) |
 | `OPENAI_PROXY_URL` | string | - | Proxy URL for OpenAI API (optional) |
 | `ELEVENLABS_TTS_KEY` | string | - | ElevenLabs API key (required) |
+| `SPEECHMATICS_API_KEY` | string | - | Speechmatics API key (required for Speechmatics STT/TTS graph) |
 | `WEATHERAPI_API_KEY` | string | - | Weather API key (optional) |
 
 ## Customization
@@ -225,4 +246,5 @@ docker run --rm -it --env-file .env -p 8080:8080 -p 3000:3000 voice-assistant-ap
 - [xAI API Documentation](https://docs.x.ai/)
 - [OpenAI API Documentation](https://platform.openai.com/docs)
 - [ElevenLabs API Documentation](https://docs.elevenlabs.io/)
+- [Speechmatics API Documentation](https://docs.speechmatics.com/)
 - [TEN Framework Documentation](https://doc.theten.ai)

@@ -139,6 +139,9 @@
       "path": "../../../ten_packages/extension/sarvam_http_tts"
     },
     {
+      "path": "../../../ten_packages/extension/speechmatics_tts_python"
+    },
+    {
       "path": "../../../ten_packages/extension/stepfun_tts_python"
     },
     {
