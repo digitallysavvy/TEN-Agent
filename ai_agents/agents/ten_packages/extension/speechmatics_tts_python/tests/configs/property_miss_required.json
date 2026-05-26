@@ -1,0 +1,8 @@
+{
+  "params": {
+    "api_key": "",
+    "voice": "sarah",
+    "output_format": "pcm_16000",
+    "sample_rate": 16000
+  }
+}

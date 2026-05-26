@@ -1,0 +1,11 @@
+{
+  "dump": true,
+  "dump_path": "./tests/keep_dump_output/",
+  "params": {
+    "api_key": "${env:SPEECHMATICS_API_KEY|}",
+    "voice": "megan",
+    "output_format": "pcm_16000",
+    "base_url": "https://preview.tts.speechmatics.com",
+    "sample_rate": 16000
+  }
+}
